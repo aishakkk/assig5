@@ -84,7 +84,21 @@ public class BST<K extends Comparable<K>, V> {
         }
         return node;
     }
-    public Iterable<K> iterator() {
-        return null;
+    public Iterable<Node> iterator() {
+        ArrayList<Node> array = inorderTraversal(new ArrayList<>(), root);
+        return (Iterable) array;
+    }
+    private ArrayList<Node> inorderTraversal(ArrayList array, Node node) {
+        if(node == null) {
+            return null;
+        }
+        if (node.left != null) {
+            array.add(inorderTraversal(array, node.left));
+        }
+        array.add(node);
+        if (node.right != null) {
+            array.add(inorderTraversal(array, node.right));
+        }
+        return array;
     }
 }
