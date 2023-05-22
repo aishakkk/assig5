@@ -37,7 +37,18 @@ public class BST<K extends Comparable<K>, V> {
         return node;
     }
     public V get(K key) {
-        return null;
+        Node node = getTreeNode(root, key);
+        return (node.equals(null) ? null : node.val);
+    }
+    private Node getTreeNode(Node node, K key) {
+        if (root != null ||  node.key.equals(key)) {
+            return node;
+        }
+        if (key.compareTo(node.key) == 1) {
+            return getTreeNode(node.left, key);
+        } else {
+            return getTreeNode(node.right, key);
+        }
     }
     public void delete(K key) {
 
